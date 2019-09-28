@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Train Schedule</title>
+
+    <link rel="stylesheet" href="./assets/reset.css">
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="./assets/trainschedule.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-database.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col sm 12">
+
+                <div class="jumbotron">
+                    <h1 class="display-4">I Hear The Train A Comin'!</h1>
+                    <p class="lead">All Aboard!!!</p>
+                    <hr class="my-4">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col sm 12">
+                <div class="card">
+
+                    <div class="card-header">
+                        Current Train Schedule
+                    </div>
+
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                    </div>
+
+                    <div class="row">
+                        <div class="col sm 12">
+
+                            <table class="table table-striped">
+                                <thead>
+
+                                    <tr>
+                                        <th scope="col">Train Name</th>
+                                        <th scope="col">Destination</th>
+                                        <th scope="col">Frequency (min)</th>
+                                        <th scope="col">Next Arrival</th>
+                                        <th scope="col">Minutes Away</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody id="trainScheduleTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    </blockquote>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                Add Train
+            </div>
+
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <form>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Train Name</label>
+                            <input class="form-control" id="trainName">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Destination</label>
+                            <input class="form-control" id="trainDestination">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">First Train Time (HH:mm - military time)</label>
+                            <input class="form-control" id="firstTrainTime">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Frequency (min)</label>
+                            <input class="form-control" id="trainFrequency">
+                        </div>
+
+                    </form>
+                </blockquote>
+            </div>
+
+            <button id="add-train" class="btn btn-primary">Submit</button>
+
+        </div>
+
+        
+
+</body>
+
+</html>
