@@ -15,13 +15,14 @@ $(document).ready(function () {
 
     let dataBase = firebase.database()
 
-    function addToDatabase(train, destination, frequency) {
+    function addToDatabase(train, destination, time, frequency) {
 
         dataBase
             .ref()
             .push({
                 train: train,
                 destination: destination,
+                time: time,
                 frequency: frequency,
             })
     }
@@ -32,12 +33,13 @@ $(document).ready(function () {
 
             let trainName = snapshot.val().train,
                 trainDestination = snapshot.val().destination,
+                firstTime = snapshot.val().time,
                 trainFrequency = snapshot.val().frequency
 
-            buildRow(trainName, trainDestination, trainFrequency)
+            buildRow(trainName, trainDestination, firstTime, trainFrequency)
         })
 
-    function buildRow(train, destination, frequency) {
+    function buildRow(train, destination, time, frequency) {
         let newTrain = $("<tr>")
         let trainNameCol = $("<td>")
         let destinationCol = $("<td>")
@@ -45,21 +47,34 @@ $(document).ready(function () {
         let nextArrivalCol = $("<td>")
         let minutesAwayCol = $("<td>")
 
-        let startDateMoment = moment(startDate, "MM/DD/YYY");
-        let monthsWorked = moment().diff(startDateMoment, "months");
-        // let totalBilled = monthsWorked * monthlyRate;
+        let nextArrivalConverted = moment(time, "hh:mm").subtract(1, "years");
+        console.log(nextArrivalConverted);
+        
+        // let currentTime = moment();
+        let diffTime = moment().diff(moment(nextArrivalConverted), "minutes");
+        console.log(diffTime);
+        
+        let timeRemainder = diffTime % frequency;
+        console.log(timeRemainder);
+        
+        let minutesTillTrain = frequency - timeRemainder;
+        console.log(minutesTillTrain);
+        
+        nextArrival = moment().add(minutesTillTrain, "minutes");
+        console.log(moment(nextArrival).format("HH:mm a"));
+        
 
         trainNameCol.text(train)
         destinationCol.text(destination)
         frequencyCol.text(frequency)
-        nextArrivalCol.text(nextArrival)
-        minutesAwayCol.text(minutesAway)
+        nextArrivalCol.text(moment(nextArrival).format("HH:mm a"))
+        minutesAwayCol.text(minutesTillTrain)
 
         newTrain.append(trainNameCol)
         newTrain.append(destinationCol)
         newTrain.append(frequencyCol)
-        newTrain.append(minutesAwayCol)
         newTrain.append(nextArrivalCol)
+        newTrain.append(minutesAwayCol)
 
         $("#trainScheduleTable").append(newTrain)
 
@@ -67,11 +82,13 @@ $(document).ready(function () {
 
     $("#add-train").click(function () {
         event.preventDefault();
-        let trainName = $("#trainName").val(),
+            let trainName = $("#trainName").val(),
             trainDestination = $("#trainDestination").val(),
+            firstTime = $("#firstTrainTime").val(),
             trainFrequency = $("#trainFrequency").val()
 
-        addToDatabase(trainName, trainDestination, trainFrequency)
+        addToDatabase(trainName, trainDestination, firstTime, trainFrequency)
+
     })
 
 })
