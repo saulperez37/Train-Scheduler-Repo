@@ -13,7 +13,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery.js"></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
     <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
@@ -23,44 +23,42 @@
 
 <body>
 
-    <div class="container">
+    <div class="container mt-4 mb-4">
 
         <div class="row">
-            <div class="col sm 12">
+            <div class="col-sm-12">
 
-                <div class="jumbotron">
-                    <h1 class="display-4">I Hear The Train A Comin'!</h1>
-                    <p class="lead">All Aboard!!!</p>
-                    <hr class="my-4">
+                <div class="jumbotron mb-4 text-center bg-info shadow">
+                    <h1 class="display-4 font-weight-bolder text-light" style="font-size: 72px">Southwest Train Center
+                    </h1>
+                    <p class="lead font-weight-bold font-italic text-dark" style="font-size: 24px">Providing up to date
+                        travel schedules for
+                        trains in the southwest.</p>
                 </div>
 
             </div>
         </div>
 
         <div class="row">
-            <div class="col sm 12">
-                <div class="card">
+            <div class="col-sm-12">
+                <div class="card mb-4 border-warning shadow">
 
-                    <div class="card-header">
-                        Current Train Schedule
-                    </div>
-
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
+                    <div class="card-header bg-warning text-dark font-weight-bold" style="font-size: 20px">
+                        CURRENT TRAIN SCHEDULE
                     </div>
 
                     <div class="row">
-                        <div class="col sm 12">
+                        <div class="col-sm-12">
 
                             <table class="table table-striped">
                                 <thead>
 
                                     <tr>
-                                        <th scope="col">Train Name</th>
-                                        <th scope="col">Destination</th>
-                                        <th scope="col">Frequency (min)</th>
-                                        <th scope="col">Next Arrival</th>
-                                        <th scope="col">Minutes Away</th>
+                                        <th scope="col" class="font-italic font-weight-bold">Train Name</th>
+                                        <th scope="col" class="font-italic font-weight-bold">Destination</th>
+                                        <th scope="col" class="font-italic font-weight-bold">Frequency (min)</th>
+                                        <th scope="col" class="font-italic font-weight-bold">Next Arrival</th>
+                                        <th scope="col" class="font-italic font-weight-bold">Minutes Away</th>
                                     </tr>
 
                                 </thead>
@@ -75,31 +73,31 @@
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-header">
-                Add Train
+        <div class="card border-warning shadow">
+            <div class="card-header bg-warning text-dark font-weight-bold" style="font-size: 20px">
+                ADD TRAIN
             </div>
 
-            <div class="card-body">
+            <div class="card-body font-weight-bold">
                 <blockquote class="blockquote mb-0">
-                    <form>
+                    <form id="train-form">
 
-                        <div class="form-group">
+                        <div class="form-group" style="font-size: 16px">
                             <label for="exampleInputEmail1">Train Name</label>
                             <input class="form-control" id="trainName">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" style="font-size: 16px">
                             <label for="exampleInputPassword1">Destination</label>
                             <input class="form-control" id="trainDestination">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" style="font-size: 16px">
                             <label for="exampleInputPassword1">First Train Time (HH:mm - military time)</label>
                             <input class="form-control" id="firstTrainTime">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" style="font-size: 16px">
                             <label for="exampleInputPassword1">Frequency (min)</label>
                             <input class="form-control" id="trainFrequency">
                         </div>
@@ -108,11 +106,15 @@
                 </blockquote>
             </div>
 
-            <button id="add-train" class="btn btn-primary">Submit</button>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button id="add-train" class="btn ml-4 mb-4 bg-info text-light">Submit</button>
+                </div>
+            </div>
 
         </div>
 
-        
+
         <script src="./assets/trainschedule.js"></script>
 </body>
 

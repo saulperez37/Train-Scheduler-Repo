@@ -1,17 +1,17 @@
 $(document).ready(function () {
 
-     // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyDnjnCumsDvArs9AMZG0FT-vpCu6ajraUE",
-    authDomain: "train-scheduler-84974.firebaseapp.com",
-    databaseURL: "https://train-scheduler-84974.firebaseio.com",
-    projectId: "train-scheduler-84974",
-    storageBucket: "",
-    messagingSenderId: "591408442224",
-    appId: "1:591408442224:web:935ae5e2726bf0a0db7db5"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyDnjnCumsDvArs9AMZG0FT-vpCu6ajraUE",
+        authDomain: "train-scheduler-84974.firebaseapp.com",
+        databaseURL: "https://train-scheduler-84974.firebaseio.com",
+        projectId: "train-scheduler-84974",
+        storageBucket: "",
+        messagingSenderId: "591408442224",
+        appId: "1:591408442224:web:935ae5e2726bf0a0db7db5"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
 
     let dataBase = firebase.database()
 
@@ -49,20 +49,20 @@ $(document).ready(function () {
 
         let nextArrivalConverted = moment(time, "hh:mm").subtract(1, "years");
         console.log(nextArrivalConverted);
-        
+
         // let currentTime = moment();
         let diffTime = moment().diff(moment(nextArrivalConverted), "minutes");
         console.log(diffTime);
-        
+
         let timeRemainder = diffTime % frequency;
         console.log(timeRemainder);
-        
+
         let minutesTillTrain = frequency - timeRemainder;
         console.log(minutesTillTrain);
-        
+
         nextArrival = moment().add(minutesTillTrain, "minutes");
         console.log(moment(nextArrival).format("HH:mm a"));
-        
+
 
         trainNameCol.text(train)
         destinationCol.text(destination)
@@ -82,12 +82,14 @@ $(document).ready(function () {
 
     $("#add-train").click(function () {
         event.preventDefault();
-            let trainName = $("#trainName").val(),
+        let trainName = $("#trainName").val(),
             trainDestination = $("#trainDestination").val(),
             firstTime = $("#firstTrainTime").val(),
             trainFrequency = $("#trainFrequency").val()
 
-        addToDatabase(trainName, trainDestination, firstTime, trainFrequency)
+        $("#train-form")[0].reset();
+
+        addToDatabase(trainName, trainDestination, firstTime, trainFrequency);
 
     })
 
